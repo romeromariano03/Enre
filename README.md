@@ -29,9 +29,7 @@ Heatmaps y gráficos de delta comparando la distribución porcentual de los 10 t
 Vocabulario político por gobierno
 ![Vocabulario político por gobierno](vocabulario_politico_enre.png)
 Análisis de keyness léxico (frecuencia normalizada por 10.000 palabras) sobre el corpus completo y sobre el tópico de tarifas específicamente, en los primeros 18 meses de cada gestión. Se observa el salto de "aprobar" bajo LLA frente al uso más frecuente de "sancionar" en Frente de Todos, y una mayor presencia de vocabulario ligado a costos y usuarios residenciales.
-Red interactiva — Gobierno × Empresa Regulada
-![Red gobierno-empresa regulada (vista estática)](red_distribuidoras_preview.png)
-Grafo bipartito que conecta cada gestión de gobierno con las distribuidoras reguladas (Edenor/Edesur), donde el grosor de la arista representa el volumen de resoluciones. La imagen es una captura estática; la versión completa es interactiva (zoom, arrastre de nodos, tooltips con el conteo exacto de resoluciones) y se genera como `red_distribuidoras.html` al ejecutar el notebook.
+
 ---
 Taxonomía de Tópicos (10 clusters)
 Tópico	Descripción

@@ -1,110 +1,110 @@
-# ENRE Regulatory Analysis — NLP on Argentine Electricity Regulation (2016–2025)
+# Análisis Regulatorio del ENRE — NLP sobre la Regulación Eléctrica Argentina (2016–2025)
 
-> ⚠️ **Work in progress.** This is an initial exploratory approach. Findings and methodology are subject to revision.
+> ⚠️ **Trabajo en curso.** Este es un abordaje exploratorio inicial. Los hallazgos y la metodología están sujetos a revisión.
 
-Computational text analysis of 1,873 resolutions from Argentina's electricity regulator (ENRE) across three administrations, using BERTopic for unsupervised topic discovery.
-
----
-
-## Research Question
-
-> *How did the regulatory priorities of Argentina's electricity sector change across the Cambiemos (2016–2019), Frente de Todos (2019–2023), and La Libertad Avanza (2023–) administrations?*
-
-This is a question any energy policy analyst would recognize — but one that had never been answered with systematic data. This project addresses that gap by applying NLP to the full corpus of ENRE resolutions published in the Argentine Official Gazette.
+Análisis computacional de texto sobre 1.873 resoluciones del ente regulador eléctrico argentino (ENRE) a lo largo de tres gestiones de gobierno, utilizando BERTopic para el descubrimiento no supervisado de tópicos.
 
 ---
 
-## What This Project Does
+## Pregunta de Investigación
 
-1. **Downloads** the full InfoLEG normativa nacional dataset (~424,000 norms) from Argentina's open data portal
-2. **Filters** to 1,873 ENRE resolutions published between 2016 and 2025
-3. **Preprocesses** text: strips boilerplate legal language, removes stopwords, normalizes
-4. **Trains BERTopic** using a multilingual SentenceTransformer (`paraphrase-multilingual-MiniLM-L12-v2`) to discover 10 regulatory topic clusters
-5. **Recovers outliers** via lexical rules (163 of 186 unclassified resolutions reclassified)
-6. **Compares** topic distributions across administrations using an 18-month equivalent window to control for government maturity bias
-7. **Visualizes** results: heatmaps, time-series, and interactive network graphs (PyVis)
+> *¿Cómo cambiaron las prioridades regulatorias del sector eléctrico argentino a lo largo de las gestiones de Cambiemos (2016–2019), Frente de Todos (2019–2023) y La Libertad Avanza (2023–)?*
+
+Es una pregunta que cualquier analista de política energética reconocería — pero que nunca había sido respondida con datos sistemáticos. Este proyecto aborda ese vacío aplicando NLP al corpus completo de resoluciones del ENRE publicadas en el Boletín Oficial argentino.
 
 ---
 
-## Key Findings
+## Qué Hace Este Proyecto
 
-| Finding | Detail |
+1. **Descarga** el dataset completo de normativa nacional de InfoLEG (~424.000 normas) desde el portal de datos abiertos de Argentina
+2. **Filtra** hasta obtener 1.873 resoluciones del ENRE publicadas entre 2016 y 2025
+3. **Preprocesa** el texto: elimina lenguaje legal repetitivo (boilerplate), remueve stopwords, normaliza
+4. **Entrena BERTopic** usando un SentenceTransformer multilingüe (`paraphrase-multilingual-MiniLM-L12-v2`) para descubrir 10 clusters temáticos regulatorios
+5. **Recupera outliers** mediante reglas léxicas (163 de 186 resoluciones no clasificadas fueron reclasificadas)
+6. **Compara** la distribución de tópicos entre gestiones usando una ventana equivalente de 18 meses para controlar el sesgo de madurez de gobierno
+7. **Visualiza** resultados: mapas de calor, series de tiempo y grafos de red interactivos (PyVis)
+
+---
+
+## Hallazgos Principales
+
+| Hallazgo | Detalle |
 |---|---|
-| **LLA governs through approval, not sanction** | La Libertad Avanza uses "aprobar" far more than "sancionar" relative to prior governments |
-| **Tariff resolutions triple under LLA** | "Tarifas y facturación" topic triples in the 18-month comparable window |
-| **Renewable energy connections are high under both FdT and LLA** | Contrary to expectations, renewable grid connection resolutions are not concentrated under Cambiemos |
-| **Audiencias públicas in sustained decline** | Across all three governments — a structural weakening of participatory regulatory mechanisms |
+| **LLA gobierna mediante aprobación, no sanción** | La Libertad Avanza usa "aprobar" con mucha más frecuencia que "sancionar", en relación con gestiones anteriores |
+| **Las resoluciones de tarifas se triplican bajo LLA** | El tópico "Tarifas y facturación" se triplica en la ventana comparable de 18 meses |
+| **Las conexiones de energía renovable son altas tanto en FdT como en LLA** | Contrario a lo esperado, las resoluciones de conexión renovable a la red no se concentran bajo Cambiemos |
+| **Caída sostenida de las audiencias públicas** | A lo largo de las tres gestiones — un debilitamiento estructural de los mecanismos regulatorios participativos |
 
 ---
 
-## Topic Taxonomy (10 clusters)
+## Taxonomía de Tópicos (10 clusters)
 
-| Topic | Description |
+| Tópico | Descripción |
 |---|---|
-| Acceso y ampliación de transporte convencional | Conventional grid access and transmission expansion |
-| Conexión de generación renovable al SADI | Renewable energy grid connection (split from Topic 0 via lexical rules) |
-| Regulación y sanciones Edenor/Edesur | Buenos Aires distribution companies — sanctions and compliance |
-| Tarifas y facturación | Tariff setting, billing, and rate adjustments |
-| Remuneración a transportistas | Transmission company remuneration |
-| Regulación de distribuidoras provinciales | Provincial distribution and transmission regulation |
-| Recursos administrativos | Administrative appeals |
-| Actos administrativos y procedimientos | Procedural and administrative acts |
-| Audiencias públicas | Public hearings |
-| Tasas de fiscalización | Regulatory fees |
+| Acceso y ampliación de transporte convencional | Acceso a la red y expansión de la transmisión convencional |
+| Conexión de generación renovable al SADI | Conexión de energía renovable a la red (desagregado del Tópico 0 mediante reglas léxicas) |
+| Regulación y sanciones Edenor/Edesur | Distribuidoras del área metropolitana de Buenos Aires — sanciones y cumplimiento |
+| Tarifas y facturación | Fijación de tarifas, facturación y ajustes de precios |
+| Remuneración a transportistas | Remuneración de las empresas de transmisión |
+| Regulación de distribuidoras provinciales | Regulación de la distribución y transmisión provincial |
+| Recursos administrativos | Recursos administrativos |
+| Actos administrativos y procedimientos | Actos y procedimientos administrativos |
+| Audiencias públicas | Audiencias públicas |
+| Tasas de fiscalización | Tasas de fiscalización |
 
 ---
 
-## Tech Stack
+## Stack Tecnológico
 
 - **Python 3** (Google Colab)
-- `BERTopic` — unsupervised topic modeling
-- `sentence-transformers` — multilingual embeddings (`paraphrase-multilingual-MiniLM-L12-v2`)
-- `UMAP` + `HDBSCAN` — dimensionality reduction and clustering
-- `pandas` — corpus construction and topic assignment
-- `matplotlib` — comparative visualizations
-- `networkx` + `pyvis` — interactive network graphs (government × regulated entity)
-- InfoLEG open data API — primary data source
+- `BERTopic` — modelado de tópicos no supervisado
+- `sentence-transformers` — embeddings multilingües (`paraphrase-multilingual-MiniLM-L12-v2`)
+- `UMAP` + `HDBSCAN` — reducción de dimensionalidad y clustering
+- `pandas` — construcción del corpus y asignación de tópicos
+- `matplotlib` — visualizaciones comparativas
+- `networkx` + `pyvis` — grafos de red interactivos (gobierno × entidad regulada)
+- API de datos abiertos de InfoLEG — fuente de datos primaria
 
 ---
 
-## Repository Structure
+## Estructura del Repositorio
 
 ```
 enre-nlp-regulatory-analysis/
-├── ENRE.ipynb        # Full pipeline — run in Google Colab
+├── ENRE.ipynb        # Pipeline completo — ejecutar en Google Colab
 └── README.md
 ```
 
-**Note:** The `enre_corpus.csv` and `enre_final.csv` intermediate files are generated by running the notebook. They are not included in the repo due to file size (~150MB source data).
+**Nota:** Los archivos intermedios `enre_corpus.csv` y `enre_final.csv` se generan al ejecutar el notebook. No están incluidos en el repositorio debido al tamaño de los datos fuente (~150 MB).
 
 ---
 
-## How to Run
+## Cómo Ejecutarlo
 
-1. Open `ENRE.ipynb` in [Google Colab](https://colab.research.google.com/)
-2. Run Cell 1 — installs `pdfplumber`, `requests`, `beautifulsoup4`, `tqdm`
-3. Run Cell 2 — downloads InfoLEG full dataset (~150MB ZIP, ~3 min)
-4. Run Cells 3–6 — filters to ENRE resolutions, assigns governments, saves corpus
-5. Run Cell 7 — installs `bertopic`, `sentence-transformers`, `umap-learn`, `hdbscan`
-6. Run Cells 8–end — full NLP pipeline, topic modeling, analysis, and visualizations
+1. Abrir `ENRE.ipynb` en [Google Colab](https://colab.research.google.com/)
+2. Ejecutar la Celda 1 — instala `pdfplumber`, `requests`, `beautifulsoup4`, `tqdm`
+3. Ejecutar la Celda 2 — descarga el dataset completo de InfoLEG (~150 MB en ZIP, ~3 min)
+4. Ejecutar las Celdas 3 a 6 — filtra las resoluciones del ENRE, asigna gestiones de gobierno, guarda el corpus
+5. Ejecutar la Celda 7 — instala `bertopic`, `sentence-transformers`, `umap-learn`, `hdbscan`
+6. Ejecutar las Celdas 8 en adelante — pipeline completo de NLP, modelado de tópicos, análisis y visualizaciones
 
-**Runtime:** ~25–40 minutes on Colab free tier (embedding step is the bottleneck).
-
----
-
-## Methodological Notes
-
-- **Corpus:** 1,873 ENRE resolutions (2016–2025), using `titulo_sumario` + `texto_resumido` fields from InfoLEG
-- **Outlier recovery:** 163/186 outliers reclassified via keyword rules; 23 remain unclassified (<1.3% of corpus)
-- **Comparative window:** 18-month equivalent windows used for cross-government comparison to control for the different durations of each administration
-- **Limitation:** Full resolution text (`texto_original`) coverage is partial — InfoLEG's scraped content varies by year. Topic modeling relies on summaries, which may underrepresent technical content in longer resolutions
-- **Next steps:** Extend to ENARGAS for gas sector comparison; apply keyness analysis over full text once scraping pipeline is resolved
+**Tiempo de ejecución:** ~25–40 minutos en el nivel gratuito de Colab (el paso de embeddings es el cuello de botella).
 
 ---
 
-## Author
+## Notas Metodológicas
 
-**Mariano Romero**  
-Political Scientist | Buenos Aires, Argentina  
-Master's in Energy Economics & Regulation — CEARE, UBA Facultad de Derecho  
+- **Corpus:** 1.873 resoluciones del ENRE (2016–2025), utilizando los campos `titulo_sumario` + `texto_resumido` de InfoLEG
+- **Recuperación de outliers:** 163/186 outliers reclasificados mediante reglas de palabras clave; 23 permanecen sin clasificar (<1,3% del corpus)
+- **Ventana comparativa:** se utilizan ventanas equivalentes de 18 meses para la comparación entre gestiones, a fin de controlar las distintas duraciones de cada gobierno
+- **Limitación:** la cobertura del texto completo de las resoluciones (`texto_original`) es parcial — el contenido scrapeado por InfoLEG varía según el año. El modelado de tópicos se basa en resúmenes, lo que puede subrepresentar el contenido técnico de las resoluciones más extensas
+- **Próximos pasos:** extender el análisis a ENARGAS para comparar con el sector gasífero; aplicar análisis de keyness sobre el texto completo una vez resuelto el pipeline de scraping
+
+---
+
+## Autor
+
+**Mariano Romero**
+Politólogo | Buenos Aires, Argentina
+Maestría en Economía y Regulación Energética — CEARE, UBA Facultad de Derecho
 [LinkedIn](https://www.linkedin.com/in/marianoromero23)
